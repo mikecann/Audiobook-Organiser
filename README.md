@@ -17,6 +17,14 @@ Audiobook Organiser scans a number of source folders for audio books and organis
 + Drag and drop to setup iTunes playlist
 + Store the database in dropbox for easy handling of multiple machines
 
+# Posts
+
+More info on my blog:
+
++ <http://mikecann.co.uk/personal-projects/audiobook-organiser-v1-3-0-dragndrop/>
++ <http://mikecann.co.uk/personal-projects/audio-book-organiser-v1-2-0/>
++ <http://mikecann.co.uk/personal-projects/audio-book-organiser-air-mate-flex-4/>
+
 # License (MIT)
 Copyright (C) 2012 by Michael Cann mike.cann@gmail.com
 
