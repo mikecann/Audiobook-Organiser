@@ -1,0 +1,21 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/halo";
+
+@font-face {
+	src: url("/assets/Origram.otf");
+	fontFamily: Origram;
+}
+
+global
+{
+	fontFamily: Verdana;
+}
+
+s|Label.TitleText
+{
+	color: #D3D1D1;
+	fontFamily: Origram;
+	fontSize: 23;
+}
+

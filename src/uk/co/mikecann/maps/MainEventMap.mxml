@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mate:EventMap  xmlns:fx="http://ns.adobe.com/mxml/2009" 				 
+			    xmlns:mate="http://mate.asfusion.com/">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import uk.co.mikecann.events.BooksEvent;
+			import uk.co.mikecann.events.SettingsEvent;
+			import uk.co.mikecann.events.SourcesEvent;
+			import uk.co.mikecann.managers.ABOManager;
+			import uk.co.mikecann.views.MainView;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<mate:Debugger level="{Debugger.ALL}" />
+		
+		<mate:EventHandlers type="{FlexEvent.PREINITIALIZE}">
+			<mate:ObjectBuilder generator="{ ABOManager }" constructorArguments="{ scope.dispatcher }" />
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ SourcesEvent.ADD }">
+			<mate:MethodInvoker generator="{ABOManager}" method="addSource"/>
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ SourcesEvent.REMOVE }">
+			<mate:MethodInvoker generator="{ABOManager}" method="removeSource" arguments="{[event.sourceFolder]}"/>
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ SourcesEvent.CHANGED }">
+			<mate:MethodInvoker generator="{ABOManager}" method="rebuildBookList"/>
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ BooksEvent.PROPERTY_CHANGED }">
+			<mate:MethodInvoker generator="{ABOManager}" method="saveBooklist"/>
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ BooksEvent.BOOK_BEGIN_DRAG }" debug="true">
+			<mate:MethodInvoker generator="{ABOManager}" method="bookBeginDrag" arguments="{[event.book]}"/>
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ SettingsEvent.CLEAR_DATA }">
+			<mate:MethodInvoker generator="{ABOManager}" method="resetAll"/>
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ SettingsEvent.BROWSE_FOR_DATABASE_LOCATION }">
+			<mate:MethodInvoker generator="{ABOManager}" method="browseForNewDatabaseLocation"/>
+		</mate:EventHandlers>
+		
+		<mate:EventHandlers type="{ SettingsEvent.IMPORT_DATABASE_FILE }">
+			<mate:MethodInvoker generator="{ABOManager}" method="importDatabaseFile"/>
+		</mate:EventHandlers>
+			
+		<mate:Injectors target="{ MainView }" >
+			<mate:PropertyInjector targetKey="sources" source="{ ABOManager }" sourceKey="sources"/>
+			<mate:PropertyInjector targetKey="books" source="{ ABOManager }" sourceKey="books"/>
+			<mate:PropertyInjector targetKey="databaseFileLocation" source="{ ABOManager }" sourceKey="databaseFileLocation"/>
+		</mate:Injectors>
+
+	</fx:Declarations>
+	
+</mate:EventMap>

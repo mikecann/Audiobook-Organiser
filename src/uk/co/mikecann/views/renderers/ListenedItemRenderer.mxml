@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/halo">
+	<fx:Script>
+		<![CDATA[
+			import flash.events.Event;
+			
+			import uk.co.mikecann.events.BooksEvent;
+			import uk.co.mikecann.models.AudioBookModel;
+
+			protected function checkbox1_changeHandler(event:Event):void
+			{
+				AudioBookModel(data).listened = !AudioBookModel(data).listened;
+				dispatchEvent(new BooksEvent(BooksEvent.PROPERTY_CHANGED));
+			}
+
+		]]>
+	</fx:Script>
+	
+	<mx:HBox horizontalCenter="0">
+		<mx:CheckBox selected="{AudioBookModel(data).listened}" change="checkbox1_changeHandler(event)" />
+	</mx:HBox>	
+	
+</mx:Canvas>
